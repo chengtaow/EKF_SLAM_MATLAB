@@ -29,6 +29,10 @@ robsigma = Gx*sigma(1:3,1:3)*Gx.' + R3;
 rmsigma = Gx*sigma(1:3,4:size(sigma,1));
 mapsigma = sigma(4:size(sigma,1),4:size(sigma),1);
 
-sigma = [[robsigma rmsigma];[rmsigma.' mapsigma]];
+% TODO: Compute the predicted sigma after incorporating the motion
+
+
+
+
 
 end

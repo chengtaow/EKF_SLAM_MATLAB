@@ -43,7 +43,7 @@ robSigma = zeros(3);
 robMapSigma = zeros(3,2*N);
 mapSigma = inf*eye(2*N);
 mapSigma(isnan(mapSigma)) = 0;
-sigma = [[robSigma robMapSigma];[robMapSigma' mapSigma]];
+sigma = [[robSigma robMapSigma];[robMapSigma.' mapSigma]];
 
 % toogle the visualization type
 %showGui = true;  % show a window while the algorithm runs
