@@ -40,10 +40,11 @@ function data = read_data(filename)
 
     data = struct;
     data.timestep.sensor = struct;
-    first = 1;
+    data.timestep.odom = struct;
+    nexttime = 1;
 
-    odom = struct;
-    sensor = struct;
+    double lmid;
+    time = 1;
 
     while ~feof(input)
         line = fgetl(input);
@@ -51,26 +52,20 @@ function data = read_data(filename)
         type = deblank(arr{1});
 
         if strcmp(type, 'ODOMETRY') == 1
-            if first == 0
-                data.timestep(end+1).odometry = odom;
-                data.timestep(end).sensor = sensor(2:end);
-                odom = struct;
-                sensor = struct;
+            if nexttime == 0
+                time = time+1;
             end
-            first = 0;
-            odom.r1 = str2double(arr{2});
-            odom.t  = str2double(arr{3});
-            odom.r2 = str2double(arr{4});
+            nexttime = 0;
+            data.timestep(time).odom.r1 = str2double(arr{2});
+            data.timestep(time).odom.t  = str2double(arr{3});
+            data.timestep(time).odom.r2 = str2double(arr{4});
         elseif strcmp(type, 'SENSOR') == 1
-            reading = struct;
-            reading.id      = str2double(arr{2});
-            reading.range   = str2double(arr{3});
-            reading.bearing = str2double(arr{4});
-            sensor(end+1) = reading;
+            lmid = str2double(arr{2});
+            data.timestep(time).sensor(lmid).id = str2double(arr{2});
+            data.timestep(time).sensor(lmid).range = str2double(arr{3});
+            data.timestep(time).sensor(lmid).bearing = str2double(arr{4});
         end
     end
-
-    data.timestep = data.timestep(2:end);
 
     fclose(input);
 end
