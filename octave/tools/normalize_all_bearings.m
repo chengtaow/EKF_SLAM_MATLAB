@@ -6,3 +6,4 @@ for i=2:2:length(z)
    z(i) = normalize_angle(z(i));
 end
 zNorm = z;
+end

@@ -53,3 +53,4 @@ x(3) = angle;
 
 % Draw ellipse
 h = drawellipse(x,a,b,color);
+end
