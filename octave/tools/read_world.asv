@@ -13,15 +13,16 @@ function landmarks = read_world(filename)
     % - Obtain x-coordinate of the 5-th landmark
     %   landmarks(5).x
     input = fopen(filename);
+    i = 1;
     landmarks = struct;
-    k = 1;
     while ~feof(input)
         line = fgetl(input);
         data = strsplit(line, ' ');
-        landmarks(k).id = str2double(data{1});
-        landmarks(k).x = str2double(data{2});
-        landmarks(k).y = str2double(data{3});
-        k = k + 1;
+
+        landmarks = struct('id', str2double(data{1}),'x' ,...
+            str2double(data{2}),...
+            'y' , str2double(data{3}));
+        i = i + 1;
     end
 
 
