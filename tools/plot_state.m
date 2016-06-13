@@ -1,4 +1,4 @@
-function plot_state(mu, sigma, landmarks, timestep, observedLandmarks, z, window)
+function plot_state(mu, sigma, landmarks, timestep, observedLandmarks, z)
     % Visualizes the state of the EKF SLAM algorithm.
     %
     % The resulting plot displays the following information:
@@ -30,16 +30,16 @@ function plot_state(mu, sigma, landmarks, timestep, observedLandmarks, z, window
     xlim([-2, 12])
     ylim([-2, 12])
     hold off
-
-    if window
-        figure(1);
-        %figure(1, 'visible', 'on');
-        drawnow;
-        %pause(0.1);
-        imwrite(figure(1),'a.gif');
+    
+    figure(1);
+    drawnow;
+    %pause(0.1);
+    frame = getframe(1);
+    im = frame2im(frame);
+    [imind, cm] = rgb2ind(im,256);
+    if timestep == 1
+        imwrite(imind,cm,'EKF implementation.gif','gif', 'Loopcount',Inf,'DelayTime',0);
     else
-        figure(1, 'visible', 'off');
-        filename = sprintf('../plots/ekf_%03d.png', timestep);
-        print(filename, '-dpng');
+        imwrite(imind,cm,'EKF implementation.gif','gif', 'WriteMode','append','DelayTime',0);
     end
 end

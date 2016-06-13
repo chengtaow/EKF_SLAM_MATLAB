@@ -64,7 +64,7 @@ switch nargin,
     L     = varargin{5};
   otherwise
     inputerr = 1;
-end;
+end
 
 % Main switch statement
 if ~inputerr,
@@ -141,7 +141,7 @@ if ~inputerr,
       
     otherwise
       disp('drawrobot: Unsupported robot type'); h = [];
-  end;
+  end
 else
   disp('drawrobot: Wrong number of input arguments'); h = [];
-end;
+end

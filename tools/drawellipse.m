@@ -30,3 +30,4 @@ p = R*p + T;
 
 % Plot
 h = plot(p(1,:),p(2,:),'Color',color, 'linewidth', 2);
+end

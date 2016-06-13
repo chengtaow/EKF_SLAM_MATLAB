@@ -23,7 +23,6 @@ function landmarks = read_world(filename)
         landmarks(k).y = str2double(data{3});
         k = k + 1;
     end
-
-
+    
     fclose(input);
 end

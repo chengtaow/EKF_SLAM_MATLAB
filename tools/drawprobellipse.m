@@ -49,7 +49,7 @@ elseif sxy > 0,
   angle =  pi/4;
 elseif sxy < 0,
   angle = -pi/4;
-end;
+end
 x(3) = angle;
 
 % Draw ellipse
