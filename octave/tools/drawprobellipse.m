@@ -33,8 +33,9 @@ if ~isreal(a), a = real(a); end;
 if ~isreal(b), b = real(b); end;
 
 % Scaling in order to reflect specified probability
-a = a*sqrt(chi2invtable(alpha,2));
-b = b*sqrt(chi2invtable(alpha,2));
+a = a*sqrt(chi2inv(alpha,2));
+b = b*sqrt(chi2inv(alpha,2));
+%b = b*sqrt(chi2invtable(alpha,2));
 
 % Look where the greater half axis belongs to
 if sxx < syy, swap = a; a = b; b = swap; end;

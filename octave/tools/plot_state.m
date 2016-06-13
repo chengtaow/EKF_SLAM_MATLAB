@@ -32,12 +32,12 @@ function plot_state(mu, sigma, landmarks, timestep, observedLandmarks, z, window
     hold off
 
     if window
-      figure(1, 'visible', 'on');
-      drawnow;
-      pause(0.1);
+        figure(1, 'visible', 'on');
+        drawnow;
+        pause(0.1);
     else
-      figure(1, 'visible', 'off');
-      filename = sprintf('../plots/ekf_%03d.png', timestep);
-      print(filename, '-dpng');
+        figure(1, 'visible', 'off');
+        filename = sprintf('../plots/ekf_%03d.png', timestep);
+        print(filename, '-dpng');
     end
 end
