@@ -54,8 +54,8 @@ showGui = true;  % show a window while the algorithm runs
 %[mu, sigma] = prediction_step(mu, sigma, data.timestep(1).odom);
 %[mu, sigma, observedLandmarks] = correction_step(mu, sigma, data.timestep(1).sensor, observedLandmarks);
 %%
-%for t = 1:size(data.timestep, 2)
-for t = 1:9
+for t = 1:size(data.timestep, 2)
+%for t = 1:300
 
     % Perform the prediction step of the EKF
     [mu, sigma] = prediction_step(mu, sigma, data.timestep(t).odom);

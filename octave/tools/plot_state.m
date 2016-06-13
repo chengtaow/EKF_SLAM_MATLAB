@@ -35,7 +35,8 @@ function plot_state(mu, sigma, landmarks, timestep, observedLandmarks, z, window
         figure(1);
         %figure(1, 'visible', 'on');
         drawnow;
-        pause(0.1);
+        %pause(0.1);
+        imwrite(figure(1),'a.gif');
     else
         figure(1, 'visible', 'off');
         filename = sprintf('../plots/ekf_%03d.png', timestep);

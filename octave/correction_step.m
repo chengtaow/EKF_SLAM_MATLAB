@@ -81,6 +81,7 @@ K = sigma * H.' / (H * sigma * H.' + Q);
 % TODO: Compute the difference between the expected and recorded measurements.
 subZ = normalize_all_bearings(Z - h);
 mu = mu + K * (subZ);
+mu(3) = normalize_angle(mu(3));
 % Remember to normalize the bearings after subtracting!
 % (hint: use the normalize_all_bearings function available in tools)
 sigma = (eye(2*N+3,2*N+3) - K * H) * sigma;
