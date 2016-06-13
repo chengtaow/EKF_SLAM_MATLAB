@@ -28,9 +28,10 @@ h = zeros(2*m, 1);
 for i = 1:m
 	% Get the id of the landmark corresponding to the i-th observation
 	landmarkId = z(i).id;
-    if (landmarkId > 0) == false
+    if isempty(z(i).id) 
         continue
     end
+    %disp(i)
     Z(2*i-1) = z(i).range;
     Z(2*i) = z(i).bearing;
 	% If the landmark is obeserved for the first time:
@@ -71,11 +72,9 @@ end
 
 % TODO: Construct the sensor noise matrix Q
 Q = zeros(2*m,2*m);
-sen_ran_noise = 0.1;
-sen_ber_noise = 0.1;
-for j = 1:m
-    Q(2*j-1,2*j-1) = sen_ran_noise;
-    Q(2*j,2*j) = sen_ber_noise;
+sen_noise = 0.01;
+for j = 1:2*m
+    Q(j,j) = sen_noise;
 end
 % TODO: Compute the Kalman gain
 K = sigma * H.' / (H * sigma * H.' + Q);

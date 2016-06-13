@@ -32,7 +32,8 @@ function plot_state(mu, sigma, landmarks, timestep, observedLandmarks, z, window
     hold off
 
     if window
-        figure(1, 'visible', 'on');
+        figure(1);
+        %figure(1, 'visible', 'on');
         drawnow;
         pause(0.1);
     else

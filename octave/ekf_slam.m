@@ -25,7 +25,7 @@ landmarks = read_world('../data/world.dat');
 data = read_data('../data/sensor_data.dat');
 %load data;
 
-%INF = 1000;
+INF = 1000;
 % Get the number of landmarks in the map
 N = size(landmarks,2);
 
@@ -41,7 +41,7 @@ observedLandmarks = false(1,N);
 mu = repmat(0.0, (2*N+3), 1);
 robSigma = zeros(3);
 robMapSigma = zeros(3,2*N);
-mapSigma = inf*eye(2*N);
+mapSigma = INF*eye(2*N);
 mapSigma(isnan(mapSigma)) = 0;
 sigma = [[robSigma robMapSigma];[robMapSigma.' mapSigma]];
 
@@ -51,8 +51,11 @@ showGui = true;  % show a window while the algorithm runs
 
 % Perform filter update for each odometry-observation pair read from the
 % data file.
-for t = 1:size(data.timestep, 2)
-%for t = 1:331
+%[mu, sigma] = prediction_step(mu, sigma, data.timestep(1).odom);
+%[mu, sigma, observedLandmarks] = correction_step(mu, sigma, data.timestep(1).sensor, observedLandmarks);
+%%
+%for t = 1:size(data.timestep, 2)
+for t = 1:9
 
     % Perform the prediction step of the EKF
     [mu, sigma] = prediction_step(mu, sigma, data.timestep(t).odom);
@@ -66,7 +69,7 @@ for t = 1:size(data.timestep, 2)
     disp('mu = '), disp(mu)
 end
 
-disp('Final system covariance matrix:'), disp(sigma)
+%disp('Final system covariance matrix:'), disp(sigma)
 % Display the final state estimate
-disp('Final robot pose:')
-disp('mu_robot = '), disp(mu(1:3)), disp('sigma_robot = '), disp(sigma(1:3,1:3))
+%disp('Final robot pose:')
+%disp('mu_robot = '), disp(mu(1:3)), disp('sigma_robot = '), disp(sigma(1:3,1:3))
