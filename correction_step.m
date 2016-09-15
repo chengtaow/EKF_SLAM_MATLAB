@@ -36,10 +36,10 @@ for i = 1:m
 	if observedLandmarks(landmarkId) == false
 		% Initialize its pose in mu based on the measurement and the current robot pose:
 		mu(2+landmarkId*2) = mu(1) + z(i).range * cos(mu(3)+z(i).bearing);
-        mu(3+landmarkId*2) = mu(2) + z(i).range * sin(mu(3)+z(i).bearing);
+        	mu(3+landmarkId*2) = mu(2) + z(i).range * sin(mu(3)+z(i).bearing);
 		% Indicate in the observedLandmarks vector that this landmark has been observed
 		observedLandmarks(landmarkId) = true;
-    end
+    	end
     
     % Compute the Jacobian H and the measurement function h
     delta_x = mu(2+i*2)-mu(1);
